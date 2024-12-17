@@ -27,8 +27,8 @@ class BooksListPageState extends State<BooksListPage> {
   final List<Book> allBooks = [
     Book(
       category: 'Fiction',
-      title: 'How Not To Die ...',
-      author: 'By Richard Roper',
+      title: 'How Not To Die Alone',
+      author: 'Richard Roper',
       rating: '4.63',
       reviewsCount: '375',
       imageColor: Colors.orangeAccent,
@@ -36,7 +36,7 @@ class BooksListPageState extends State<BooksListPage> {
     Book(
       category: 'Dystopia',
       title: 'The Power',
-      author: 'By Naomi Alderman',
+      author: 'Naomi Alderman',
       rating: '4.20',
       reviewsCount: '286',
       imageColor: Colors.redAccent,
@@ -44,7 +44,7 @@ class BooksListPageState extends State<BooksListPage> {
     Book(
       category: 'Fiction',
       title: 'No Longer Human',
-      author: 'By Osamu Dazai',
+      author: 'Osamu Dazai',
       rating: '4.55',
       reviewsCount: '520',
       imageColor: Colors.blueAccent,
@@ -52,7 +52,7 @@ class BooksListPageState extends State<BooksListPage> {
     Book(
       category: 'Fiction',
       title: 'Atomic Habits',
-      author: 'By James Clear',
+      author: 'James Clear',
       rating: '4.80',
       reviewsCount: '1,200',
       imageColor: Colors.greenAccent,
@@ -60,7 +60,7 @@ class BooksListPageState extends State<BooksListPage> {
     Book(
       category: 'Art',
       title: 'Educated',
-      author: 'By Tara Westover',
+      author: 'Tara Westover',
       rating: '4.70',
       reviewsCount: '890',
       imageColor: Colors.purpleAccent,
@@ -68,7 +68,7 @@ class BooksListPageState extends State<BooksListPage> {
     Book(
       category: 'Design',
       title: 'Sapiens',
-      author: 'By Yuval Noah Harari',
+      author: 'Yuval Noah Harari',
       rating: '4.65',
       reviewsCount: '2,100',
       imageColor: Colors.tealAccent,
