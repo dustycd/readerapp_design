@@ -75,10 +75,10 @@ class BooksListPageState extends State<BooksListPage> {
     ),
   ];
 
-  // Scroll controller for horizontal scrolling chips
+  
   final ScrollController _chipsScrollController = ScrollController();
   bool _showLeftFade = false;
-  bool _showRightFade = true; // Initially true because we can scroll to the right
+  bool _showRightFade = true; 
 
   @override
   void initState() {
