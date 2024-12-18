@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Reader app UI',
       theme: ThemeData(
-        primaryColor: Colors.orange,
+        primaryColor: const Color.fromARGB(255, 240, 94, 16),
       ),
       home: const BooksListPage(), // Default page
     );

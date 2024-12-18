@@ -10,9 +10,7 @@ class BookDetailsPage extends StatefulWidget {
 }
 
 class BookDetailsPageState extends State<BookDetailsPage> {
-  final Color topBackgroundColor = const Color(0xFFAEE1E1); // Light teal/blue background
-  final Color chipBackgroundColor = const Color(0xFFF6F1E9); // A light cream for chips
-  final Color buttonColor = const Color(0xFF7AD3D7); // A nice aqua for the 'Read Now' button
+  final Color topBackgroundColor = const Color(0xFFAEE1E1);
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +21,14 @@ class BookDetailsPageState extends State<BookDetailsPage> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background Color
+          // Background
           Container(
             height: screenHeight,
             width: screenWidth,
             color: topBackgroundColor,
           ),
 
-          // Top bar (SafeArea to avoid notch)
+          // Top bar
           SafeArea(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 16),
@@ -39,24 +37,20 @@ class BookDetailsPageState extends State<BookDetailsPage> {
                 children: [
                   IconButton(
                     icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
+                    onPressed: () => Navigator.pop(context),
                   ),
                   IconButton(
                     icon: const Icon(Icons.bookmark_border, color: Colors.white),
-                    onPressed: () {
-                      // Bookmark action if needed
-                    },
+                    onPressed: () {},
                   ),
                 ],
               ),
             ),
           ),
 
-          // White container, positioned lower to leave room for overlapping image
+          // White container
           Positioned(
-            top: 280, // Adjust this value to move container up or down
+            top: 280,
             left: 0,
             right: 0,
             bottom: 0,
@@ -71,11 +65,9 @@ class BookDetailsPageState extends State<BookDetailsPage> {
               ),
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20).copyWith(top: 120),
-                // Push content down to leave space for overlapping image
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Scrollable content
                     Expanded(
                       child: SingleChildScrollView(
                         child: Column(
@@ -104,7 +96,7 @@ class BookDetailsPageState extends State<BookDetailsPage> {
                             ),
                             const SizedBox(height: 20),
 
-                            // Rating & Reviews
+                            // Rating & reviews
                             Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
@@ -122,8 +114,8 @@ class BookDetailsPageState extends State<BookDetailsPage> {
                                     color: Colors.black87,
                                   ),
                                 ),
-                                const SizedBox(width: 10),
-                                const Icon(Icons.search, size: 18, color: Colors.grey),
+                                const Spacer(),
+                                const Icon(Icons.chat_bubble_outline, size: 18, color: Colors.grey),
                                 const SizedBox(width: 6),
                                 Text(
                                   '${book.reviewsCount} Reviews',
@@ -139,10 +131,10 @@ class BookDetailsPageState extends State<BookDetailsPage> {
                             Container(height: 1, color: Colors.grey.shade300),
                             const SizedBox(height: 20),
 
-                            // Description
-                            const Text(
-                              'Smart, darkly funny, and life-affirming, How Not to Die Alone is the bighearted debut novel we all need, for fans of Eleanor Oliphant Is Completely Fine, it\'s a story about love, loneliness, and the importance of taking a chance...',
-                              style: TextStyle(
+                            // Description from the book object
+                            Text(
+                              book.description,
+                              style: const TextStyle(
                                 fontSize: 16,
                                 color: Colors.black87,
                                 height: 1.5,
@@ -150,27 +142,26 @@ class BookDetailsPageState extends State<BookDetailsPage> {
                             ),
                             const SizedBox(height: 20),
 
-                            // Category Chips
+                            // Category Chips (Just examples)
                             Wrap(
-                              spacing: 10,
-                              runSpacing: 10,
+                              spacing: 8,
+                              runSpacing: 8,
                               children: [
                                 _buildCategoryChip('Best Sellers'),
-                                _buildCategoryChip('Fiction'),
-                                _buildCategoryChip('Biography'),
+                                _buildCategoryChip(book.category),
                               ],
                             ),
 
                             const SizedBox(height: 30),
 
-                            // Buttons at the bottom
+                            // Buttons
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children: [
                                 ElevatedButton(
                                   onPressed: () {},
                                   style: ElevatedButton.styleFrom(
-                                    backgroundColor: buttonColor,
+                                    backgroundColor: const Color.fromARGB(255, 240, 94, 16),
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(30),
                                     ),
@@ -209,18 +200,18 @@ class BookDetailsPageState extends State<BookDetailsPage> {
             ),
           ),
 
-          
+          // Overlapping image
           Positioned(
-            top: 130, 
-            left: (screenWidth - 180) / 2, 
+            top: 130,
+            left: (screenWidth - 180) / 2,
             child: Container(
               width: 180,
-              height: 250, 
+              height: 250,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(20),
                 color: Colors.white,
-                image: const DecorationImage(
-                  image: AssetImage('assets/your_image.png'), // replace with your image
+                image: DecorationImage(
+                  image: AssetImage(book.imageAsset),
                   fit: BoxFit.cover,
                 ),
                 boxShadow: const [
@@ -242,11 +233,11 @@ class BookDetailsPageState extends State<BookDetailsPage> {
     return FilterChip(
       label: Text(
         label,
-        style: const TextStyle(fontSize: 14, color: Colors.black87),
+        style: const TextStyle(fontSize: 12, color: Colors.black87),
       ),
       selected: false,
       onSelected: (_) {},
-      backgroundColor: chipBackgroundColor,
+      backgroundColor: Colors.grey.shade200,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(20),
       ),

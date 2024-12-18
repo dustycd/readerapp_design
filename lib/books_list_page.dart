@@ -14,7 +14,6 @@ class BooksListPageState extends State<BooksListPage> {
   int _currentIndex = 1;
   String selectedCategory = 'Best Sellers';
 
-  // All categories including "All" as "Best Sellers"
   final List<String> categories = [
     'Best Sellers',
     'Fiction',
@@ -22,59 +21,6 @@ class BooksListPageState extends State<BooksListPage> {
     'Art',
     'Dystopia',
   ];
-
-  // Sample master book list
-  final List<Book> allBooks = [
-    Book(
-      category: 'Fiction',
-      title: 'How Not To Die Alone',
-      author: 'Richard Roper',
-      rating: '4.63',
-      reviewsCount: '375',
-      imageColor: Colors.orangeAccent,
-    ),
-    Book(
-      category: 'Dystopia',
-      title: 'The Power',
-      author: 'Naomi Alderman',
-      rating: '4.20',
-      reviewsCount: '286',
-      imageColor: Colors.redAccent,
-    ),
-    Book(
-      category: 'Fiction',
-      title: 'No Longer Human',
-      author: 'Osamu Dazai',
-      rating: '4.55',
-      reviewsCount: '520',
-      imageColor: Colors.blueAccent,
-    ),
-    Book(
-      category: 'Fiction',
-      title: 'Atomic Habits',
-      author: 'James Clear',
-      rating: '4.80',
-      reviewsCount: '1,200',
-      imageColor: Colors.greenAccent,
-    ),
-    Book(
-      category: 'Art',
-      title: 'Educated',
-      author: 'Tara Westover',
-      rating: '4.70',
-      reviewsCount: '890',
-      imageColor: Colors.purpleAccent,
-    ),
-    Book(
-      category: 'Design',
-      title: 'Sapiens',
-      author: 'Yuval Noah Harari',
-      rating: '4.65',
-      reviewsCount: '2,100',
-      imageColor: Colors.tealAccent,
-    ),
-  ];
-
   
   final ScrollController _chipsScrollController = ScrollController();
   bool _showLeftFade = false;
@@ -106,7 +52,6 @@ class BooksListPageState extends State<BooksListPage> {
     setState(() {
       _currentIndex = index;
     });
-    // You can add navigation logic here if you want.
   }
 
   List<Book> get filteredBooks {
@@ -119,7 +64,7 @@ class BooksListPageState extends State<BooksListPage> {
 
   @override
   Widget build(BuildContext context) {
-    final orangeColor = Colors.orangeAccent;
+    const orangeColor = Color.fromARGB(255, 240, 94, 16);
     return Scaffold(
       backgroundColor: orangeColor,
       bottomNavigationBar: CustomBottomNavBar(
@@ -299,7 +244,7 @@ class BooksListPageState extends State<BooksListPage> {
                             padding: const EdgeInsets.only(bottom: 30),
                             child: GestureDetector(
                               onTap: () {
-                                // Navigate to BookDetailsPage on tap
+                                // Navigate to BookDetailsPage with the book passed as argument
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
@@ -309,11 +254,12 @@ class BooksListPageState extends State<BooksListPage> {
                               },
                               child: _buildBookItem(
                                 imageColor: book.imageColor,
-                                category: '${book.category}',
+                                category: book.category,
                                 title: book.title,
                                 author: book.author,
                                 rating: book.rating,
                                 reviewsCount: book.reviewsCount,
+                                ImageAsset: book.imageAsset,
                               ),
                             ),
                           );
@@ -345,8 +291,9 @@ class BooksListPageState extends State<BooksListPage> {
         ),
         selected: isSelected,
         onSelected: (_) => onTap(),
+        
         backgroundColor: Colors.grey.shade200,
-        selectedColor: Colors.orangeAccent,
+        selectedColor: const Color.fromARGB(255, 240, 94, 16),
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20),
         ),
@@ -362,11 +309,12 @@ class BooksListPageState extends State<BooksListPage> {
     required String author,
     required String rating,
     required String reviewsCount,
+    required String ImageAsset,
   }) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        
+        // Placeholder image area - this can later show a thumbnail if desired
         ClipRRect(
           borderRadius: BorderRadius.circular(12),
           child: Container(

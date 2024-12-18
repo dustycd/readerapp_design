@@ -17,3 +17,13 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - lib/assets/Hownottodiealone.png
+    - lib/assets/the_power.jpeg
+    - lib/assets/nolonger.jpg
+    - lib/assets/atomic.png
+    - lib/assets/educated.jpg
+    - lib/assets/sapiens.png
+
+ 
